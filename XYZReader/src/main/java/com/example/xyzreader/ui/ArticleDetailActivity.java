@@ -36,7 +36,7 @@ public class ArticleDetailActivity extends AppCompatActivity
 
     private ViewPager mPager;
     private MyPagerAdapter mPagerAdapter;
-    private View mUpButtonContainer;
+
     private View mUpButton;
 
     @Override
@@ -77,7 +77,6 @@ public class ArticleDetailActivity extends AppCompatActivity
             }
         });
 
-        mUpButtonContainer = findViewById(R.id.up_container);
 
         mUpButton = findViewById(R.id.action_up);
         mUpButton.setOnClickListener(new View.OnClickListener() {
@@ -87,18 +86,7 @@ public class ArticleDetailActivity extends AppCompatActivity
             }
         });
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            mUpButtonContainer.setOnApplyWindowInsetsListener(new View.OnApplyWindowInsetsListener() {
-                @Override
-                public WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-                    view.onApplyWindowInsets(windowInsets);
-                    mTopInset = windowInsets.getSystemWindowInsetTop();
-                    mUpButtonContainer.setTranslationY(mTopInset);
-                    updateUpButtonPosition();
-                    return windowInsets;
-                }
-            });
-        }
+
 
         if (savedInstanceState == null) {
             if (getIntent() != null && getIntent().getData() != null) {
