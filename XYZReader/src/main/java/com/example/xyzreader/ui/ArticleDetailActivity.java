@@ -102,6 +102,13 @@ public class ArticleDetailActivity extends AppCompatActivity
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(detailOfArticles);
 
+        findViewById(R.id.action_up).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

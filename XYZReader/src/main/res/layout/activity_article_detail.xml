@@ -22,18 +22,6 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:titleEnabled="true">
 
-            <ImageView
-                android:id="@+id/action_up"
-                android:layout_width="wrap_content"
-                android:layout_height="?actionBarSize"
-                android:background="?selectableItemBackgroundBorderless"
-                android:contentDescription="@string/up"
-                android:scaleType="center"
-                android:src="@drawable/ic_arrow_back"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_collapseMode="pin"
-                app:layout_collapseParallaxMultiplier="0.7" />
-
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/image_iv"
@@ -53,7 +41,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+                <ImageView
+                    android:id="@+id/action_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?actionBarSize"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/up"
+                    android:scaleType="center"
+                    android:src="@drawable/ic_arrow_back"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:layout_collapseMode="pin" />
+            </android.support.v7.widget.Toolbar>
 
         </android.support.design.widget.CollapsingToolbarLayout>
 
