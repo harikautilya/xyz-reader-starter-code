@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.app.LoaderManager;
+import android.support.v4.app.ShareCompat;
 import android.support.v4.content.Loader;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -86,9 +87,10 @@ public class ArticleDetailActivity extends AppCompatActivity
 
             @Override
             public void onPageSelected(int position) {
-
+                mCursor.moveToPosition(viewPager.getCurrentItem());
                 detailOfArticles.smoothScrollToPosition(position);
                 collapsingToolbarLayout.setTitle("");
+                getSupportActionBar().setTitle(mCursor.getString(ArticleLoader.Query.TITLE));
             }
 
             @Override
@@ -99,6 +101,19 @@ public class ArticleDetailActivity extends AppCompatActivity
 
         SnapHelper snapHelper = new PagerSnapHelper();
         snapHelper.attachToRecyclerView(detailOfArticles);
+
+        findViewById(R.id.share_fab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mCursor.moveToPosition(viewPager.getCurrentItem());
+
+                startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(ArticleDetailActivity.this)
+                        .setType("text/plain")
+                        .setText(mCursor.getString(ArticleLoader.Query.TITLE))
+                        .getIntent(), getString(R.string.action_share)));
+            }
+        });
 
 
         if (savedInstanceState == null) {
